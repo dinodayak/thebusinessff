@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart | The Business FF</title>
+  <meta name="description" content="Your cart at The Business FF." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/avif" href="nav-logo.avif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20261021e" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo" aria-label="The Business FF home">
+        <img src="nav-logo.avif" alt="The Business FF" />
+      </a>
+      <nav class="nav" id="site-nav">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/shop#search" class="icon-btn" aria-label="Search templates">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </a>
+        <a href="/account" class="icon-btn" aria-label="Sign in" data-account>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="avatar" aria-hidden="true"></span>
+        </a>
+        <a href="/cart" class="icon-btn" aria-label="Cart, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <span class="badge" data-cart-count>0</span>
+        </a>
+        <a href="/contact" class="btn btn--dark">Book a Consultation</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head page-head--left">
+      <div class="container">
+        <h1>Your <em>cart</em></h1>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container cart">
+        <div class="cart__items" data-cart-items>
+          <p class="shop-note">Loading your cart…</p>
+        </div>
+
+        <aside class="cart__summary" data-cart-summary hidden>
+          <h2>Order summary</h2>
+          <dl class="summary-rows">
+            <div><dt>Subtotal</dt><dd data-subtotal></dd></div>
+            <div data-savings-row hidden><dt>You save</dt><dd data-savings class="is-saving"></dd></div>
+            <div class="summary-total"><dt>Total</dt><dd data-total></dd></div>
+          </dl>
+          <form id="checkout-form" novalidate>
+            <div class="field">
+              <label for="checkout-email">Email for your downloads</label>
+              <input id="checkout-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+              <small class="field-hint" data-email-hint>No account needed. <a href="/account?next=/cart">Sign in</a> to save this order to your account.</small>
+            </div>
+            <button type="submit" class="btn btn--dark btn--block" data-free-btn hidden>Get my free download</button>
+            <div class="pay-buttons" data-paypal-buttons hidden>
+              <p class="pay-buttons__loading">Loading payment options…</p>
+            </div>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="pay-note" data-pay-note>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Secure checkout with PayPal. No PayPal account needed — you can pay by debit or credit card.
+          </p>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer ft">
+    <div class="container">
+      <a href="/contact" class="ft__cta">Book a <span>Consultation&nbsp;&rarr;</span></a>
+
+      <div class="ft__grid">
+        <div class="ft__col">
+          <p class="ft__label">Email</p>
+          <button type="button" class="ft__email" data-copy-email="thebusiness.ff@outlook.com">Thebusiness.ff@outlook.com</button>
+          <p class="ft__hint" data-copy-hint>Click to copy</p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Location</p>
+          <p class="ft__text">Dubai, United Arab Emirates</p>
+          <p class="ft__text">Remote &amp; on-site <span class="ft__time" data-dubai-time></span></p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Social</p>
+          <ul class="ft__links">
+            <li><a href="https://www.instagram.com/thebusiness.ff" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/thebusiness.ff/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/ms-duene-5a29911a1" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Pages</p>
+          <ul class="ft__links">
+            <li><a href="/shop">Template Shop</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact &amp; Booking</a></li>
+            <li><a href="/account">My Account</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__bottom">
+        <p>&copy; 2026 <strong>The Business FF</strong> &middot; Business Form &amp; Formats</p>
+        <p class="ft__legal"><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+        <a href="#top" class="ft__top" data-back-to-top>Back to top &uarr;</a>
+      </div>
+      <p class="ft__wordmark" aria-hidden="true">THE BUSINESS FF</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js?v=20261021e"></script>
+  <script src="js/shop.js?v=20261021e"></script>
+  <script src="js/main.js?v=20261021e"></script>
+  <script src="js/cart.js?v=20261021e"></script>
+</body>
+</html>

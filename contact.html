@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Booking | The Business FF</title>
+  <meta name="description" content="Share a few details about your business and preferred schedule, and we'll confirm a consultation time." />
+  <link rel="icon" type="image/avif" href="nav-logo.avif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20261021e" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo" aria-label="The Business FF home">
+        <img src="nav-logo.avif" alt="The Business FF" />
+      </a>
+      <nav class="nav" id="site-nav">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact" aria-current="page">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/shop#search" class="icon-btn" aria-label="Search templates">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </a>
+        <a href="/account" class="icon-btn" aria-label="Sign in" data-account>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="avatar" aria-hidden="true"></span>
+        </a>
+        <a href="/cart" class="icon-btn" aria-label="Cart, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <span class="badge" data-cart-count>0</span>
+        </a>
+        <a href="#inquiry" class="btn btn--dark">Book a Consultation</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="split-hero split-hero--contact">
+      <img class="split-hero__img"
+           src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?auto=format&fit=crop&w=1400&q=80"
+           alt="Calm workspace with a wooden desk in soft, warm light" />
+      <div class="split-hero__content">
+        <p class="eyebrow">Contact &amp; Booking</p>
+        <h1>Let's plan the support <em>you need.</em></h1>
+        <p class="lead">Share a few details about your business and preferred schedule. We'll get back to you to confirm a consultation time.</p>
+      </div>
+    </section>
+
+    <!-- Inquiry -->
+    <section class="section inquiry" id="inquiry">
+      <div class="container">
+        <div class="reveal">
+          <h2>Inquiry form</h2>
+          <p class="inquiry__lead">Fill out the form below — fields marked * are required.</p>
+
+          <form id="inquiry-form" novalidate>
+            <!-- Spam trap: hidden from people, bots fill it in -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Leave this empty</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full name *</label>
+                <input id="name" name="name" type="text" maxlength="120" placeholder="e.g. Aisha Rahman" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="business">Business name *</label>
+                <input id="business" name="business" type="text" maxlength="160" placeholder="e.g. Rahman Trading LLC" autocomplete="organization" required />
+              </div>
+              <div class="field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" maxlength="254" placeholder="you@company.com" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone *</label>
+                <input id="phone" name="phone" type="tel" maxlength="40" placeholder="+971 5X XXX XXXX" autocomplete="tel" required />
+              </div>
+              <div class="field">
+                <label for="datetime">Preferred date &amp; time *</label>
+                <input id="datetime" name="datetime" type="datetime-local" required />
+              </div>
+              <div class="field">
+                <label for="service">Service needed *</label>
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option>Document Preparation</option>
+                  <option>Admin Support</option>
+                  <option>Data &amp; Inventory Management</option>
+                  <option>A mix of services</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field field--full">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" maxlength="4000" placeholder="Tell us about your business and what you need help with..."></textarea>
+              </div>
+            </div>
+
+            <label class="consent">
+              <input type="checkbox" name="consent" checked />
+              I agree to be contacted by email or phone about my inquiry.
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--dark">Send Inquiry</button>
+              <small>We usually reply within one business day.</small>
+            </div>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <aside class="chat-card reveal">
+          <h3>Prefer to chat?</h3>
+          <p>Reach us directly — we're happy to answer quick questions before you book.</p>
+
+          <ul class="reach">
+            <li>
+              <span class="icon-circle"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div><strong>Email</strong><span><a href="mailto:thebusiness.ff@outlook.com">Thebusiness.ff@outlook.com</a></span></div>
+            </li>
+            <li>
+              <span class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg></span>
+              <div><strong>Instagram</strong><span><a href="https://www.instagram.com/thebusiness.ff" target="_blank" rel="noopener">@thebusiness.ff</a></span></div>
+            </li>
+            <li>
+              <span class="icon-circle icon-circle--brand"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></span>
+              <div><strong>Facebook</strong><span><a href="https://www.facebook.com/thebusiness.ff/" target="_blank" rel="noopener">facebook.com/thebusiness.ff</a></span></div>
+            </li>
+            <li>
+              <span class="icon-circle icon-circle--brand"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span>
+              <div><strong>LinkedIn</strong><span><a href="https://www.linkedin.com/in/ms-duene-5a29911a1" target="_blank" rel="noopener">Ms. Duene</a></span></div>
+            </li>
+            <li>
+              <span class="icon-circle"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><strong>Location</strong><span>Dubai, United Arab Emirates</span></div>
+            </li>
+            <li>
+              <span class="icon-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><strong>Hours</strong><span>Flexible · by appointment</span></div>
+            </li>
+          </ul>
+
+          <a href="mailto:thebusiness.ff@outlook.com" class="btn btn--dark btn--block">Email Us</a>
+
+          <div class="next">
+            <p class="eyebrow">What happens next</p>
+            <ol>
+              <li>We review your inquiry</li>
+              <li>We confirm a consultation slot</li>
+              <li>We propose a plan &amp; schedule</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer ft">
+    <div class="container">
+      <a href="/contact" class="ft__cta">Book a <span>Consultation&nbsp;&rarr;</span></a>
+
+      <div class="ft__grid">
+        <div class="ft__col">
+          <p class="ft__label">Email</p>
+          <button type="button" class="ft__email" data-copy-email="thebusiness.ff@outlook.com">Thebusiness.ff@outlook.com</button>
+          <p class="ft__hint" data-copy-hint>Click to copy</p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Location</p>
+          <p class="ft__text">Dubai, United Arab Emirates</p>
+          <p class="ft__text">Remote &amp; on-site <span class="ft__time" data-dubai-time></span></p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Social</p>
+          <ul class="ft__links">
+            <li><a href="https://www.instagram.com/thebusiness.ff" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/thebusiness.ff/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/ms-duene-5a29911a1" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Pages</p>
+          <ul class="ft__links">
+            <li><a href="/shop">Template Shop</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact &amp; Booking</a></li>
+            <li><a href="/account">My Account</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__bottom">
+        <p>&copy; 2026 <strong>The Business FF</strong> &middot; Business Form &amp; Formats</p>
+        <p class="ft__legal"><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+        <a href="#top" class="ft__top" data-back-to-top>Back to top &uarr;</a>
+      </div>
+      <p class="ft__wordmark" aria-hidden="true">THE BUSINESS FF</p>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js?v=20261021e"></script>
+  <script src="js/shop.js?v=20261021e"></script>
+  <script src="js/main.js?v=20261021e"></script>
+</body>
+</html>

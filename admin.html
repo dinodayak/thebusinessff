@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | The Business FF</title>
+  <meta name="description" content="Admin dashboard" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/avif" href="nav-logo.avif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20261021e" />
+  <link rel="stylesheet" href="css/admin.css?v=20261021e" />
+</head>
+<body class="adm-body">
+
+  <!-- Shown until we know who's signed in -->
+  <div class="adm-gate" data-gate>
+    <div class="adm-gate__box">
+      <img src="nav-logo.avif" alt="The Business FF" class="adm-gate__logo" />
+      <p class="adm-gate__msg" data-gate-msg>Checking your access…</p>
+    </div>
+  </div>
+
+  <div class="adm" data-app hidden>
+    <!-- Sidebar -->
+    <aside class="adm-side">
+      <a href="/" class="adm-brand">
+        <img src="nav-logo.avif" alt="" />
+        <span>Admin</span>
+      </a>
+      <nav class="adm-nav" aria-label="Admin sections">
+        <button type="button" class="adm-nav__item" data-view-btn="overview" aria-current="page">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          <span>Overview</span>
+        </button>
+        <button type="button" class="adm-nav__item" data-view-btn="templates">
+          <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+          <span>Templates</span>
+          <em class="adm-nav__count" data-count="templates"></em>
+        </button>
+        <button type="button" class="adm-nav__item" data-view-btn="inquiries">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span>Submissions</span>
+          <em class="adm-nav__count adm-nav__count--alert" data-count="inquiries"></em>
+        </button>
+        <button type="button" class="adm-nav__item" data-view-btn="orders">
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <span>Orders</span>
+          <em class="adm-nav__count" data-count="orders"></em>
+        </button>
+      </nav>
+      <div class="adm-side__foot">
+        <a href="/" class="adm-side__link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+          View website
+        </a>
+        <div class="adm-user">
+          <span class="adm-user__avatar" data-user-initial>A</span>
+          <span class="adm-user__email" data-user-email></span>
+        </div>
+        <button type="button" class="adm-side__link" data-signout>
+          <svg viewBox="0 0 24 24"><path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H3"/></svg>
+          Sign out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="adm-main">
+      <header class="adm-head">
+        <div>
+          <p class="adm-head__crumb">The Business FF</p>
+          <h1 data-view-title>Overview</h1>
+        </div>
+        <div class="adm-head__actions">
+          <button type="button" class="btn btn--dark" data-new-template>+ New template</button>
+        </div>
+      </header>
+
+      <!-- Overview -->
+      <section class="adm-view" data-view="overview">
+        <div class="adm-stats">
+          <div class="adm-stat"><p>Revenue</p><strong data-stat="revenue">—</strong><span>Paid orders, all time</span></div>
+          <div class="adm-stat"><p>Paid orders</p><strong data-stat="orders">—</strong><span data-stat-sub="orders">&nbsp;</span></div>
+          <div class="adm-stat"><p>New submissions</p><strong data-stat="inquiries">—</strong><span>Waiting for a reply</span></div>
+          <div class="adm-stat"><p>Active templates</p><strong data-stat="templates">—</strong><span data-stat-sub="templates">&nbsp;</span></div>
+        </div>
+
+        <div class="adm-grid2">
+          <div class="adm-card">
+            <div class="adm-card__head"><h2>Needs attention</h2></div>
+            <ul class="adm-todo" data-attention><li class="adm-skel"></li><li class="adm-skel"></li></ul>
+          </div>
+          <div class="adm-card">
+            <div class="adm-card__head"><h2>Latest submissions</h2><button type="button" class="adm-textbtn" data-goto="inquiries">View all</button></div>
+            <ul class="adm-mini" data-recent-inquiries><li class="adm-skel"></li><li class="adm-skel"></li></ul>
+          </div>
+        </div>
+
+        <div class="adm-card">
+          <div class="adm-card__head"><h2>Latest orders</h2><button type="button" class="adm-textbtn" data-goto="orders">View all</button></div>
+          <div data-recent-orders><div class="adm-skel adm-skel--row"></div><div class="adm-skel adm-skel--row"></div></div>
+        </div>
+      </section>
+
+      <!-- Templates -->
+      <section class="adm-view" data-view="templates" hidden>
+        <div class="adm-toolbar">
+          <label class="adm-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span class="visually-hidden">Search templates</span>
+            <input type="search" placeholder="Search templates" data-search="templates" />
+          </label>
+          <div class="adm-chips" role="group" aria-label="Show" data-chips="templates">
+            <button type="button" class="adm-chip" aria-pressed="true" data-value="all">All <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="active">Active <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="archived">Archived <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="nofiles">No files <em></em></button>
+          </div>
+        </div>
+        <div class="adm-list" data-templates><div class="adm-skel adm-skel--row"></div><div class="adm-skel adm-skel--row"></div><div class="adm-skel adm-skel--row"></div></div>
+      </section>
+
+      <!-- Submissions -->
+      <section class="adm-view" data-view="inquiries" hidden>
+        <div class="adm-toolbar">
+          <label class="adm-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span class="visually-hidden">Search submissions</span>
+            <input type="search" placeholder="Search name, business, email" data-search="inquiries" />
+          </label>
+          <div class="adm-chips" role="group" aria-label="Show" data-chips="inquiries">
+            <button type="button" class="adm-chip" aria-pressed="true" data-value="new">New <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="contacted">Contacted <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="done">Done <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="all">All <em></em></button>
+          </div>
+        </div>
+        <div class="adm-inquiries" data-inquiries><div class="adm-skel adm-skel--card"></div></div>
+      </section>
+
+      <!-- Orders -->
+      <section class="adm-view" data-view="orders" hidden>
+        <div class="adm-toolbar">
+          <label class="adm-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span class="visually-hidden">Search orders</span>
+            <input type="search" placeholder="Search by email or template" data-search="orders" />
+          </label>
+          <div class="adm-chips" role="group" aria-label="Show" data-chips="orders">
+            <button type="button" class="adm-chip" aria-pressed="true" data-value="paid">Paid <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="pending">Pending <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="other">Failed / refunded <em></em></button>
+            <button type="button" class="adm-chip" aria-pressed="false" data-value="all">All <em></em></button>
+          </div>
+        </div>
+        <div class="adm-card adm-card--flush" data-orders><div class="adm-skel adm-skel--row"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Template editor (slides in from the right) -->
+  <div class="adm-scrim" data-scrim hidden></div>
+  <aside class="adm-drawer" data-drawer aria-hidden="true" aria-labelledby="drawer-title" role="dialog" aria-modal="true">
+    <form id="template-form" class="adm-drawer__form" novalidate>
+      <header class="adm-drawer__head">
+        <div>
+          <p class="adm-head__crumb" data-drawer-crumb>New template</p>
+          <h2 id="drawer-title" data-drawer-title>Add a template</h2>
+        </div>
+        <button type="button" class="adm-iconbtn" data-close-drawer aria-label="Close">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+
+      <div class="adm-drawer__body">
+        <fieldset class="adm-fs">
+          <legend>Basics</legend>
+          <div class="adm-field">
+            <label for="t-name">Name <i>*</i></label>
+            <input id="t-name" name="name" type="text" maxlength="160" required placeholder="e.g. Cleaning Business Essentials BUNDLE!" />
+          </div>
+          <div class="adm-field">
+            <label for="t-summary">Short line</label>
+            <input id="t-summary" name="summary" type="text" maxlength="120" placeholder="e.g. 10 ready-to-use templates" />
+            <small>Shown above the name on cards.</small>
+          </div>
+          <div class="adm-field">
+            <label for="t-slug">Web address</label>
+            <div class="adm-prefix"><span>/product?p=</span><input id="t-slug" name="slug" type="text" maxlength="100" placeholder="made-from-the-name" /></div>
+            <small data-slug-hint>Created from the name. Fixed after saving, because files are stored under it.</small>
+          </div>
+        </fieldset>
+
+        <fieldset class="adm-fs">
+          <legend>Price</legend>
+          <div class="adm-row2">
+            <div class="adm-field">
+              <label for="t-price">Price <i>*</i></label>
+              <div class="adm-prefix"><span>$</span><input id="t-price" name="price" type="number" min="0" step="0.01" required placeholder="0.00" /></div>
+              <small>Use 0 for a free download.</small>
+            </div>
+            <div class="adm-field">
+              <label for="t-compare">Original price</label>
+              <div class="adm-prefix"><span>$</span><input id="t-compare" name="compare" type="number" min="0" step="0.01" placeholder="optional" /></div>
+              <small>Shows the item as "On Sale".</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="adm-fs">
+          <legend>Shop placement</legend>
+          <div class="adm-field">
+            <span class="adm-label">Categories</span>
+            <div class="adm-pills" data-cats>
+              <label><input type="checkbox" name="cat" value="cleaning" /><span>Cleaning Services &amp; Finance</span></label>
+              <label><input type="checkbox" name="cat" value="salon" /><span>Salon and Finance</span></label>
+              <label><input type="checkbox" name="cat" value="finance" /><span>Finance</span></label>
+              <label><input type="checkbox" name="cat" value="real-estate" /><span>Real Estate</span></label>
+              <label><input type="checkbox" name="cat" value="office" /><span>Office Admin</span></label>
+              <label><input type="checkbox" name="cat" value="planners" /><span>Planners</span></label>
+            </div>
+          </div>
+          <div class="adm-row2">
+            <div class="adm-field">
+              <label for="t-sort">Position</label>
+              <input id="t-sort" name="sort" type="number" step="1" />
+              <small>Lower numbers show first.</small>
+            </div>
+            <div class="adm-field">
+              <span class="adm-label">Visible in shop</span>
+              <label class="adm-switch adm-switch--lg">
+                <input type="checkbox" name="active" checked />
+                <span class="adm-switch__track"></span>
+                <span class="adm-switch__text" data-active-text>Active</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="adm-fs">
+          <legend>Description</legend>
+          <div class="adm-field">
+            <label for="t-description">About this template</label>
+            <textarea id="t-description" name="description" maxlength="5000" rows="5" placeholder="What it is and who it's for"></textarea>
+          </div>
+          <div class="adm-field">
+            <label for="t-includes">What's included</label>
+            <textarea id="t-includes" name="includes" maxlength="5000" rows="5" placeholder="One item per line&#10;Client Intake Form&#10;Booking Form"></textarea>
+            <small data-includes-count>0 items</small>
+          </div>
+        </fieldset>
+
+        <fieldset class="adm-fs">
+          <legend>Cover image</legend>
+          <div class="adm-cover">
+            <div class="adm-cover__preview" data-cover-box>
+              <img alt="" data-cover-img hidden />
+              <span data-cover-empty>No image</span>
+            </div>
+            <div class="adm-cover__side">
+              <label class="adm-drop" data-drop="cover">
+                <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden data-cover-input />
+                <svg viewBox="0 0 24 24"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+                <strong>Drop an image or click to upload</strong>
+                <span>PNG, JPG or WebP. Portrait (2:3) looks best.</span>
+              </label>
+              <div class="adm-field">
+                <label for="t-image">…or paste an image link</label>
+                <input id="t-image" name="image_url" type="url" placeholder="https://" />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="adm-fs">
+          <legend>Download files</legend>
+          <p class="adm-fs__hint">What buyers receive after checkout (PDF, Excel, Word…).</p>
+          <ul class="adm-files" data-files></ul>
+          <label class="adm-drop adm-drop--files" data-drop="files">
+            <input type="file" multiple hidden data-files-input />
+            <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6m0 0-2.5 2.5M12 12l2.5 2.5"/></svg>
+            <strong>Drop files or click to add</strong>
+            <span>They upload when you save.</span>
+          </label>
+        </fieldset>
+      </div>
+
+      <footer class="adm-drawer__foot">
+        <button type="button" class="adm-textbtn adm-textbtn--danger" data-delete-template hidden>Delete template</button>
+        <span class="adm-spacer"></span>
+        <button type="button" class="btn btn--outline" data-close-drawer>Cancel</button>
+        <button type="submit" class="btn btn--dark" data-save>Save template</button>
+      </footer>
+    </form>
+  </aside>
+
+  <!-- Toast messages -->
+  <div class="adm-toasts" data-toasts aria-live="polite" aria-atomic="false"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js?v=20261021e"></script>
+  <script src="js/shop.js?v=20261021e"></script>
+  <script src="js/admin.js?v=20261021e"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Local-only files: not part of the public site
+.claude
+supabase
+alternative-logo.avif
+.vscode
+.env*

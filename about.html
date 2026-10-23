@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | The Business FF</title>
+  <meta name="description" content="BFF (Business Form &amp; Formats) provides practical digital resources and administrative support to help businesses stay organized." />
+  <link rel="icon" type="image/avif" href="nav-logo.avif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20261021e" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo" aria-label="The Business FF home">
+        <img src="nav-logo.avif" alt="The Business FF" />
+      </a>
+      <nav class="nav" id="site-nav">
+        <a href="/">Home</a>
+        <a href="/about" aria-current="page">About Us</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/shop#search" class="icon-btn" aria-label="Search templates">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </a>
+        <a href="/account" class="icon-btn" aria-label="Sign in" data-account>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="avatar" aria-hidden="true"></span>
+        </a>
+        <a href="/cart" class="icon-btn" aria-label="Cart, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <span class="badge" data-cart-count>0</span>
+        </a>
+        <a href="/contact" class="btn btn--dark">Book a Consultation</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="split-hero split-hero--contact">
+      <img class="split-hero__img"
+           src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1400&q=80"
+           alt="Laptop, notebook and coffee on a tidy desk" />
+      <div class="split-hero__content">
+        <p class="eyebrow">About us</p>
+        <h1>Business organization, <em>made easier.</em></h1>
+        <p class="lead">BFF (Business Form &amp; Formats) provides practical digital resources and administrative support solutions designed to help businesses operate more efficiently and stay organized.</p>
+      </div>
+    </section>
+
+    <!-- What we do -->
+    <section class="section" id="what-we-do">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">What we do</p>
+          <h2>Simplifying the everyday work of <em>running a business</em></h2>
+          <p>From ready-to-use business templates, forms, planners, and checklists to administrative assistance, our goal is to simplify everyday tasks and help business owners manage their operations with greater ease.</p>
+        </div>
+
+        <div class="service-grid about-offer">
+          <article class="service reveal">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div>
+            <h3>Templates &amp; forms</h3>
+            <p>Ready-to-use documents for clients, finance, HR and daily operations.</p>
+          </article>
+          <article class="service reveal">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h6"/></svg></div>
+            <h3>Planners &amp; checklists</h3>
+            <p>Simple tools to plan your day, track tasks and keep nothing slipping.</p>
+          </article>
+          <article class="service reveal">
+            <div class="icon-circle"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></div>
+            <h3>Administrative assistance</h3>
+            <p>Hands-on support with documents, admin and records when you need it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="band about-values">
+      <div class="container reveal">
+        <p class="eyebrow">How we work</p>
+        <h2>Accuracy, confidentiality and responsible handling of business information.</h2>
+        <p class="about-values__lead">Every task and resource is approached with a focus on organization, professionalism, and practical results.</p>
+        <ul class="values">
+          <li>
+            <span class="values__icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <strong>Accuracy</strong>
+            <span>Careful, detail-checked work you can rely on.</span>
+          </li>
+          <li>
+            <span class="values__icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6z"/></svg></span>
+            <strong>Confidentiality</strong>
+            <span>Your business information is handled responsibly.</span>
+          </li>
+          <li>
+            <span class="values__icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></span>
+            <strong>Organization</strong>
+            <span>Clear systems that make work easier to manage.</span>
+          </li>
+          <li>
+            <span class="values__icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+            <strong>Practical results</strong>
+            <span>Resources and support built for real, everyday use.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Who we help -->
+    <section class="section" id="who-we-help">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Who we help</p>
+          <h2>Here to help, <em>wherever you are</em> in business</h2>
+          <p>Whether you're launching a business, managing daily operations, or looking for dependable administrative assistance, BFF is here to help you work smarter and stay focused on your priorities.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <p class="step__num">01</p>
+            <h3>Launching a business</h3>
+            <p>Start organized from day one with the forms, trackers and planners a new business needs.</p>
+          </div>
+          <div class="step reveal">
+            <p class="step__num">02</p>
+            <h3>Managing daily operations</h3>
+            <p>Keep clients, schedules, finances and records in order with practical, easy-to-use tools.</p>
+          </div>
+          <div class="step reveal">
+            <p class="step__num">03</p>
+            <h3>Dependable admin assistance</h3>
+            <p>Hand off documents, admin and inventory to a reliable assistant, on your schedule.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="cta about-mission">
+      <div class="container reveal">
+        <p class="eyebrow">Our mission</p>
+        <blockquote>
+          <p>To make business organization easier, administrative tasks more manageable, and your time more valuable.</p>
+        </blockquote>
+        <div class="btn-row">
+          <a href="/shop" class="btn btn--dark">Shop Templates</a>
+          <a href="/contact" class="btn btn--outline">Book a Consultation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer ft">
+    <div class="container">
+      <a href="/contact" class="ft__cta">Book a <span>Consultation&nbsp;&rarr;</span></a>
+
+      <div class="ft__grid">
+        <div class="ft__col">
+          <p class="ft__label">Email</p>
+          <button type="button" class="ft__email" data-copy-email="thebusiness.ff@outlook.com">Thebusiness.ff@outlook.com</button>
+          <p class="ft__hint" data-copy-hint>Click to copy</p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Location</p>
+          <p class="ft__text">Dubai, United Arab Emirates</p>
+          <p class="ft__text">Remote &amp; on-site <span class="ft__time" data-dubai-time></span></p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Social</p>
+          <ul class="ft__links">
+            <li><a href="https://www.instagram.com/thebusiness.ff" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/thebusiness.ff/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/ms-duene-5a29911a1" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Pages</p>
+          <ul class="ft__links">
+            <li><a href="/shop">Template Shop</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact &amp; Booking</a></li>
+            <li><a href="/account">My Account</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__bottom">
+        <p>&copy; 2026 <strong>The Business FF</strong> &middot; Business Form &amp; Formats</p>
+        <p class="ft__legal"><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+        <a href="#top" class="ft__top" data-back-to-top>Back to top &uarr;</a>
+      </div>
+      <p class="ft__wordmark" aria-hidden="true">THE BUSINESS FF</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js?v=20261021e"></script>
+  <script src="js/shop.js?v=20261021e"></script>
+  <script src="js/main.js?v=20261021e"></script>
+</body>
+</html>

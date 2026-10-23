@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Account | The Business FF</title>
+  <meta name="description" content="Sign in or create your The Business FF account." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/avif" href="nav-logo.avif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20261021e" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo" aria-label="The Business FF home">
+        <img src="nav-logo.avif" alt="The Business FF" />
+      </a>
+      <nav class="nav" id="site-nav">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/shop#search" class="icon-btn" aria-label="Search templates">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </a>
+        <a href="/account" class="icon-btn" aria-label="Sign in" aria-current="page" data-account>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="avatar" aria-hidden="true"></span>
+        </a>
+        <a href="/cart" class="icon-btn" aria-label="Cart, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          <span class="badge" data-cart-count>0</span>
+        </a>
+        <a href="/contact" class="btn btn--dark">Book a Consultation</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="auth">
+    <div class="auth__intro">
+      <p class="eyebrow">Your account</p>
+      <h1>Welcome to The Business FF</h1>
+      <p>Sign in to book consultations faster and keep track of your templates.</p>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-tabs" role="tablist" aria-label="Account" hidden>
+        <button class="auth-tab" role="tab" aria-selected="true" data-target="signin">Sign in</button>
+        <button class="auth-tab" role="tab" aria-selected="false" data-target="signup">Create account</button>
+      </div>
+
+      <!-- Loading (until we know whether someone is signed in) -->
+      <div data-view="loading" class="auth-loading">Loading…</div>
+
+      <!-- Sign in -->
+      <form id="signin-form" data-view="signin" hidden>
+        <div class="field">
+          <label for="si-email">Email</label>
+          <input id="si-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="si-password">Password</label>
+          <input id="si-password" name="password" type="password" autocomplete="current-password" required />
+        </div>
+        <p class="auth-aside"><a href="#" data-goto="forgot">Forgot your password?</a></p>
+        <button type="submit" class="btn btn--dark btn--block">Sign in</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Create account -->
+      <form id="signup-form" data-view="signup" hidden>
+        <div class="field">
+          <label for="su-name">Full name</label>
+          <input id="su-name" name="full_name" type="text" placeholder="e.g. Aisha Rahman" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="su-email">Email</label>
+          <input id="su-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="su-password">Password</label>
+          <input id="su-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required />
+        </div>
+        <button type="submit" class="btn btn--dark btn--block">Create account</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Forgot password -->
+      <form id="forgot-form" data-view="forgot" hidden>
+        <h2>Reset your password</h2>
+        <p class="auth-lead">Enter your email and we'll send you a link to choose a new password.</p>
+        <div class="field">
+          <label for="fp-email">Email</label>
+          <input id="fp-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+        </div>
+        <button type="submit" class="btn btn--dark btn--block">Send reset link</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="auth-aside auth-aside--center"><a href="#" data-goto="signin">← Back to sign in</a></p>
+      </form>
+
+      <!-- Set a new password -->
+      <form id="reset-form" data-view="reset" hidden>
+        <h2>Choose a new password</h2>
+        <div class="field">
+          <label for="rp-password">New password</label>
+          <input id="rp-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required />
+        </div>
+        <div class="field">
+          <label for="rp-confirm">Confirm password</label>
+          <input id="rp-confirm" name="confirm" type="password" autocomplete="new-password" minlength="8" required />
+        </div>
+        <button type="submit" class="btn btn--dark btn--block">Save new password</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Signed in -->
+      <div data-view="account" class="account" hidden>
+        <h2>Hello, <span data-user-name></span></h2>
+        <dl class="account__details">
+          <div><dt>Email</dt><dd data-user-email></dd></div>
+          <div><dt>Member since</dt><dd data-user-since></dd></div>
+        </dl>
+        <div class="purchases" data-purchases>
+          <h3>My purchases</h3>
+          <p class="purchases__empty">Loading…</p>
+        </div>
+        <div class="account__actions">
+          <a href="/contact" class="btn btn--dark">Book a Consultation</a>
+          <a href="/shop" class="btn btn--outline">Browse Templates</a>
+          <a href="/admin" class="btn btn--outline" data-admin-link hidden>Admin dashboard</a>
+        </div>
+        <button type="button" id="signout" class="link-arrow account__signout">Sign out</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer ft">
+    <div class="container">
+      <a href="/contact" class="ft__cta">Book a <span>Consultation&nbsp;&rarr;</span></a>
+
+      <div class="ft__grid">
+        <div class="ft__col">
+          <p class="ft__label">Email</p>
+          <button type="button" class="ft__email" data-copy-email="thebusiness.ff@outlook.com">Thebusiness.ff@outlook.com</button>
+          <p class="ft__hint" data-copy-hint>Click to copy</p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Location</p>
+          <p class="ft__text">Dubai, United Arab Emirates</p>
+          <p class="ft__text">Remote &amp; on-site <span class="ft__time" data-dubai-time></span></p>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Social</p>
+          <ul class="ft__links">
+            <li><a href="https://www.instagram.com/thebusiness.ff" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/thebusiness.ff/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/ms-duene-5a29911a1" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="ft__col">
+          <p class="ft__label">Pages</p>
+          <ul class="ft__links">
+            <li><a href="/shop">Template Shop</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact &amp; Booking</a></li>
+            <li><a href="/account">My Account</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__bottom">
+        <p>&copy; 2026 <strong>The Business FF</strong> &middot; Business Form &amp; Formats</p>
+        <p class="ft__legal"><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+        <a href="#top" class="ft__top" data-back-to-top>Back to top &uarr;</a>
+      </div>
+      <p class="ft__wordmark" aria-hidden="true">THE BUSINESS FF</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js?v=20261021e"></script>
+  <script src="js/shop.js?v=20261021e"></script>
+  <script src="js/main.js?v=20261021e"></script>
+  <script src="js/account.js?v=20261021e"></script>
+</body>
+</html>
