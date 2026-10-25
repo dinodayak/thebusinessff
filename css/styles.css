@@ -713,6 +713,23 @@ h1, h2, h3 {
 /* ---------- PayPal buttons (cart) ---------- */
 .pay-buttons { min-height: 110px; position: relative; z-index: 0; }
 .pay-buttons__loading { text-align: center; font-size: 15.5px; color: var(--ink-soft); padding: 16px 0; margin: 0; }
+.pay-slot { position: relative; }
+.pay-slot + .pay-slot { margin-top: 12px; }
+/* While PayPal is slow to respond, the clicked button's label is replaced by a spinner in the button's own colours */
+.pay-busy {
+  position: absolute; top: 0; left: 0; right: 0; height: 48px; z-index: 200; /* PayPal's frame is z-index 100 */
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 4px;
+  cursor: progress;
+}
+.pay-slot--paypal .pay-busy { background: #ffc439; color: #003087; }
+.pay-slot--card .pay-busy { background: #2c2e2f; color: #ffffff; }
+.pay-busy__spin {
+  width: 22px; height: 22px; flex: none;
+  border: 3px solid currentColor; border-right-color: transparent; border-radius: 50%;
+  animation: bff-spin 0.7s linear infinite;
+}
+@keyframes bff-spin { to { transform: rotate(360deg); } }
 
 /* ---------- About page ---------- */
 .about-offer .service:nth-last-child(-n + 3) { border-bottom: 0; }

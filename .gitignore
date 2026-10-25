@@ -1,2 +1,6 @@
 .vercel
 .env*
+
+.claude/
+supabase/.temp/
+*.log

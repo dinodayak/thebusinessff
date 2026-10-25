@@ -124,19 +124,86 @@ async function setupPayPal() {
 
   let orderId = null;
   let paypalOrderId = null;
+
+  // PayPal and card are two separate buttons (one frame each). That way we know which one was clicked
+  // and can put a spinner over just that button while PayPal's side is slow to respond.
+  payBox.innerHTML = `<div class="pay-slot pay-slot--paypal"></div><div class="pay-slot pay-slot--card"></div>`;
+  const slots = [...payBox.querySelectorAll(".pay-slot")];
+  const idleHeight = new Map(); // slot -> its height with only the button showing (set after render)
+  let busySlot = null;
+  let busyEl = null;
+  let busyTimer = null;
+  let pointerSlot = null;
+
+  const setBusy = (slot) => {
+    clearTimeout(busyTimer);
+    if (!slot) {
+      if (busyEl) busyEl.remove();
+      busyEl = null;
+      busySlot = null;
+      // Hand focus back to the page so the next click on a PayPal frame is noticed again
+      if (document.activeElement && document.activeElement.tagName === "IFRAME") document.activeElement.blur();
+      window.focus();
+      return;
+    }
+    if (busySlot !== slot) {
+      if (busyEl) busyEl.remove();
+      busyEl = document.createElement("div");
+      busyEl.className = "pay-busy";
+      busyEl.setAttribute("role", "status");
+      busyEl.setAttribute("aria-label", "Please wait");
+      busyEl.innerHTML = `<span class="pay-busy__spin" aria-hidden="true"></span>`;
+      // The spinner appears on mouse-down, before the click has finished. Let the release pass through to
+      // PayPal's button (otherwise the click is swallowed); only then block repeat clicks.
+      busyEl.style.pointerEvents = "none";
+      const el = busyEl;
+      setTimeout(() => { if (busyEl === el) el.style.pointerEvents = "auto"; }, 800);
+      slot.appendChild(busyEl);
+      busySlot = slot;
+    }
+    busyTimer = setTimeout(() => setBusy(), 15000); // safety net only
+  };
+
   // The PayPal window was closed or failed: tell the server so the unpaid order doesn't linger
   const retireOrder = (ppId) => {
     const id = ppId || paypalOrderId;
     if (orderId && id) callFunction("paypal-capture", { action: "cancel", order_id: orderId, paypal_order_id: id }).catch(() => {});
   };
-  payBox.innerHTML = "";
-  window.paypal.Buttons({
-    style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal", height: 48 },
 
+  // The buttons live in cross-site frames and only call us back a few seconds after the click,
+  // so react to the click itself: a real pointer click that lands in a button frame, with a valid email
+  slots.forEach((s) => {
+    s.addEventListener("pointerenter", () => (pointerSlot = s));
+    s.addEventListener("pointerleave", () => { if (pointerSlot === s) pointerSlot = null; });
+  });
+  window.addEventListener("blur", () => {
+    setTimeout(() => {
+      const slot = pointerSlot;
+      const el = document.activeElement;
+      if (!slot || busyEl || !idleHeight.get(slot)) return;
+      if (!el || el.tagName !== "IFRAME" || !slot.contains(el)) return;
+      if (slot.offsetHeight > idleHeight.get(slot) + 40) return; // card form already open: this is typing, not a button click
+      if (!emailInput.checkValidity()) return;
+      setBusy(slot);
+    }, 0);
+  });
+
+  // The card form opens inline and makes its slot taller: that is our signal that PayPal is ready
+  if (window.ResizeObserver) {
+    slots.forEach((s) => new ResizeObserver(() => {
+      if (busyEl && busySlot === s && idleHeight.get(s) && s.offsetHeight > idleHeight.get(s) + 40) setBusy();
+    }).observe(s));
+  }
+
+  const handlers = (slot) => ({
     // Make sure we have an email before PayPal opens
     onClick: (_data, actions) => {
       setStatus("");
-      if (!emailInput.reportValidity()) return actions.reject();
+      if (!emailInput.reportValidity()) {
+        setBusy();
+        return actions.reject();
+      }
+      setBusy(slot);
       return actions.resolve();
     },
 
@@ -146,8 +213,14 @@ async function setupPayPal() {
         const res = await callFunction("checkout", { items: cart.items(), email: emailInput.value.trim() });
         orderId = res.order_id;
         paypalOrderId = res.paypal_order_id;
+        // The PayPal button opens its own window right after this, so its spinner has done its job soon after
+        if (slot === slots[0] && busySlot === slot) {
+          clearTimeout(busyTimer);
+          busyTimer = setTimeout(() => setBusy(), 2500);
+        }
         return res.paypal_order_id;
       } catch (err) {
+        setBusy();
         setStatus(err.message, true);
         throw err;
       }
@@ -155,6 +228,7 @@ async function setupPayPal() {
 
     // Buyer approved: our server captures the payment and confirms the amount
     onApprove: async (data, actions) => {
+      setBusy();
       setStatus("Confirming your payment…");
       try {
         const res = await callFunction("paypal-capture", { order_id: orderId, paypal_order_id: data.orderID });
@@ -166,14 +240,30 @@ async function setupPayPal() {
     },
 
     onCancel: (data) => {
+      setBusy();
       setStatus("Payment cancelled — your cart is still here whenever you're ready.");
       retireOrder(data && data.orderID);
     },
     onError: () => {
+      setBusy();
       if (!status.textContent) setStatus("Something went wrong with PayPal. Please try again.", true);
       retireOrder();
     },
-  }).render(payBox).catch(() => {
+  });
+
+  const renderButton = (slot, config) => {
+    const buttons = window.paypal.Buttons({ ...config, ...handlers(slot) });
+    if (!buttons.isEligible()) {
+      slot.hidden = true;
+      return Promise.resolve();
+    }
+    return buttons.render(slot).then(() => idleHeight.set(slot, slot.offsetHeight));
+  };
+
+  Promise.all([
+    renderButton(slots[0], { fundingSource: window.paypal.FUNDING.PAYPAL, style: { color: "gold", shape: "rect", label: "paypal", height: 48 } }),
+    renderButton(slots[1], { fundingSource: window.paypal.FUNDING.CARD, style: { color: "black", shape: "rect", height: 48 } }),
+  ]).catch(() => {
     payBox.innerHTML = `<p class="pay-buttons__loading">Payment options couldn't load. Please refresh the page.</p>`;
   });
 }
